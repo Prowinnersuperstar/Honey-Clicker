@@ -6,114 +6,115 @@
 <style>
 
 body {
-    text-align: center;
-    font-family: Arial, sans-serif;
-    background: #fff3a6;
-    margin: 0;
+    text-align:center;
+    font-family:Arial,sans-serif;
+    background:#fff3a6;
+    margin:0;
 }
 
 h1 {
-    color: #d68b00;
+    color:#d68b00;
 }
 
-
-/* Honey */
 
 #honey {
-    font-size: 40px;
-    margin-top: 30px;
+    font-size:40px;
+    margin-top:30px;
 }
 
 
-/* Click button */
-
 #click {
-    font-size: 80px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    margin-top: 80px;
+    font-size:80px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    margin-top:80px;
 }
 
 #click:hover {
-    transform: scale(1.1);
+    transform:scale(1.1);
 }
+
 
 
 /* Backup */
 
 #backup {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    width: 170px;
-    background: #fff0a8;
-    padding: 8px;
-    border-radius: 10px;
-    font-size: 12px;
+    position:absolute;
+    top:10px;
+    left:10px;
+    width:170px;
+    background:#fff0a8;
+    padding:8px;
+    border-radius:10px;
+    font-size:12px;
 }
 
 #backup button {
-    font-size: 11px;
-    margin: 3px;
+    font-size:11px;
+    margin:3px;
 }
 
 #backup input {
-    width: 150px;
-    font-size: 11px;
+    width:150px;
+    font-size:11px;
 }
 
 #code {
-    word-break: break-all;
-    font-size: 10px;
-    max-height: 80px;
-    overflow-y: auto;
-    background: white;
-    padding: 5px;
-    border-radius: 5px;
+    word-break:break-all;
+    font-size:10px;
+    max-height:80px;
+    overflow-y:auto;
+    background:white;
+    padding:5px;
+    border-radius:5px;
 }
 
 
-/* Upgrade shop */
+
+/* Shop */
 
 #shop {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 180px;
-    max-height: 500px;
-    overflow-y: auto;
-    background: #ffe066;
-    padding: 8px;
-    border-radius: 12px;
+    position:absolute;
+    top:10px;
+    right:10px;
+    width:180px;
+    max-height:500px;
+    overflow-y:auto;
+    background:#ffe066;
+    padding:8px;
+    border-radius:12px;
 }
 
+
 #shop h2 {
-    font-size: 18px;
+    font-size:18px;
 }
+
 
 
 .upgrade {
-    width: 100%;
-    margin: 3px;
-    padding: 6px;
-    font-size: 11px;
-    cursor: pointer;
-    border: none;
-    border-radius: 6px;
-    background: #ff9f1c;
+    width:100%;
+    margin:3px;
+    padding:6px;
+    font-size:11px;
+    cursor:pointer;
+    border:none;
+    border-radius:6px;
+    background:#ff9f1c;
 }
+
 
 .upgrade:hover {
-    background: #ffb84d;
+    background:#ffb84d;
 }
 
 
-/* Stats */
 
 #stats {
-    font-size: 20px;
+    font-size:20px;
 }
+
 
 </style>
 
@@ -126,7 +127,6 @@ h1 {
 <h1>Honey Click</h1>
 
 
-<!-- Backup -->
 
 <div id="backup">
 
@@ -156,9 +156,12 @@ Load
 
 
 
+
+
 <div id="honey">
 🍯 Honey: 0
 </div>
+
 
 
 <button id="click" onclick="clickHoney()">
@@ -168,11 +171,12 @@ Load
 
 
 
-<!-- Shop -->
+
 
 <div id="shop">
 
 <h2>Upgrades</h2>
+
 
 
 <button class="upgrade" onclick="buy('click')">
@@ -192,9 +196,25 @@ Cost: <span id="beeCost"></span>
 
 
 <button class="upgrade" onclick="buy('hive')">
-🏠 Bigger Hive<br>
-x2 Click<br>
+🏠 Improved Hive<br>
+x1.5 Click<br>
 Cost: <span id="hiveCost"></span>
+</button>
+
+
+
+<button class="upgrade" onclick="buy('machine')">
+🍯 Honey Machine<br>
+x2.5 Click<br>
+Cost: <span id="machineCost"></span>
+</button>
+
+
+
+<button class="upgrade" onclick="buy('royal')">
+👑 Royal Hive<br>
+x5 Click<br>
+Cost: <span id="royalCost"></span>
 </button>
 
 
@@ -231,30 +251,6 @@ Cost: <span id="extractorCost"></span>
 
 
 
-<button class="upgrade" onclick="buy('royal')">
-💎 Royal Hive<br>
-x5 Click<br>
-Cost: <span id="royalCost"></span>
-</button>
-
-
-
-<button class="upgrade" onclick="buy('honeyBoost')">
-🍯 Honey Boost<br>
-x1.5 Click<br>
-Cost: <span id="honeyBoostCost"></span>
-</button>
-
-
-
-<button class="upgrade" onclick="buy('superBoost')">
-🌟 Super Boost<br>
-x2.5 Click<br>
-Cost: <span id="superBoostCost"></span>
-</button>
-
-
-
 <button class="upgrade" onclick="buy('farm')">
 🐝 Bee Farm<br>
 +250/sec<br>
@@ -287,14 +283,6 @@ Cost: <span id="kingdomCost"></span>
 
 
 
-<button class="upgrade" onclick="buy('nectar')">
-🌟 Royal Nectar<br>
-x10 Click<br>
-Cost: <span id="nectarCost"></span>
-</button>
-
-
-
 <button class="upgrade" onclick="buy('factory')">
 🚀 Honey Factory<br>
 +25000/sec<br>
@@ -302,7 +290,10 @@ Cost: <span id="factoryCost"></span>
 </button>
 
 
+
 </div>
+
+
 
 
 
@@ -311,11 +302,22 @@ Cost: <span id="factoryCost"></span>
 <p id="power">
 Honey per click: 1
 </p>
-    <script>
+
+
+<p id="auto">
+Honey per second: 0
+</p>
+
+
+</div>
+</body>
+</html>
+<script>
 
 let honey = 0;
 let clickPower = 1;
 let honeyPerSecond = 0;
+
 let multiplier = 1;
 let secondMultiplier = 1;
 
@@ -328,6 +330,10 @@ bee:{cost:50},
 
 hive:{cost:200},
 
+machine:{cost:1000},
+
+royal:{cost:10000},
+
 gold:{cost:500},
 
 queen:{cost:2000},
@@ -336,12 +342,6 @@ garden:{cost:5000},
 
 extractor:{cost:10000},
 
-royal:{cost:50000},
-
-honeyBoost:{cost:75000},
-
-superBoost:{cost:500000},
-
 farm:{cost:250000},
 
 mega:{cost:1000000},
@@ -349,8 +349,6 @@ mega:{cost:1000000},
 forest:{cost:5000000},
 
 kingdom:{cost:25000000},
-
-nectar:{cost:100000000},
 
 factory:{cost:1000000000}
 
@@ -362,7 +360,6 @@ let backupCode = "";
 
 
 
-// CLICKING
 
 function clickHoney(){
 
@@ -377,10 +374,9 @@ function clickHoney(){
 
 
 
-// BUY UPGRADES
+
 
 function buy(type){
-
 
     let cost = upgrades[type].cost;
 
@@ -403,7 +399,17 @@ function buy(type){
 
 
         if(type=="hive")
-            multiplier *= 2;
+            multiplier *= 1.5;
+
+
+
+        if(type=="machine")
+            multiplier *= 2.5;
+
+
+
+        if(type=="royal")
+            multiplier *= 5;
 
 
 
@@ -427,21 +433,6 @@ function buy(type){
 
 
 
-        if(type=="royal")
-            multiplier *= 5;
-
-
-
-        if(type=="honeyBoost")
-            multiplier *= 1.5;
-
-
-
-        if(type=="superBoost")
-            multiplier *= 2.5;
-
-
-
         if(type=="farm")
             honeyPerSecond += 250;
 
@@ -462,14 +453,8 @@ function buy(type){
 
 
 
-        if(type=="nectar")
-            multiplier *= 10;
-
-
-
         if(type=="factory")
             honeyPerSecond += 25000;
-
 
 
 
@@ -479,9 +464,7 @@ function buy(type){
         saveGame();
         update();
 
-
     }
-
 
 }
 
@@ -490,18 +473,14 @@ function buy(type){
 
 
 
-// AUTO HONEY
+
 
 setInterval(function(){
 
-
     honey += honeyPerSecond * secondMultiplier;
 
-
     saveGame();
-
     update();
-
 
 },1000);
 
@@ -511,13 +490,15 @@ setInterval(function(){
 
 
 
-// DEVICE SAVE
+
+
+
+// SAVE TO DEVICE
+
 
 function saveGame(){
 
-
     localStorage.setItem(
-
         "HoneyClickSave",
 
         JSON.stringify({
@@ -538,8 +519,10 @@ function saveGame(){
 
     );
 
-
 }
+
+
+
 
 
 
@@ -557,24 +540,35 @@ function loadGame(){
         let data = JSON.parse(save);
 
 
-        honey = data.honey;
+        honey = data.honey || 0;
 
-        clickPower = data.clickPower;
+        clickPower = data.clickPower || 1;
 
-        honeyPerSecond = data.honeyPerSecond;
+        honeyPerSecond = data.honeyPerSecond || 0;
 
-        multiplier = data.multiplier;
+        multiplier = data.multiplier || 1;
 
-        secondMultiplier = data.secondMultiplier;
+        secondMultiplier = data.secondMultiplier || 1;
 
-        upgrades = data.upgrades;
 
+        if(data.upgrades){
+
+            for(let i in upgrades){
+
+                if(data.upgrades[i]){
+
+                    upgrades[i] = data.upgrades[i];
+
+                }
+
+            }
+
+        }
 
     }
 
 
     update();
-
 
 }
 
@@ -584,7 +578,10 @@ function loadGame(){
 
 
 
+
+
 // BACKUP CODE
+
 
 function createBackup(){
 
@@ -608,15 +605,14 @@ function createBackup(){
     };
 
 
-
     backupCode = "HNY-" + btoa(JSON.stringify(save));
-
 
 
     document.getElementById("code").innerHTML = backupCode;
 
 
 }
+
 
 
 
@@ -636,14 +632,15 @@ function copyCode(){
 
 
 
+
+
 function loadBackup(){
 
 
     let code = document.getElementById("restoreInput").value;
 
 
-
-    try {
+    try{
 
 
         let data = JSON.parse(
@@ -654,17 +651,31 @@ function loadBackup(){
 
 
 
-        honey = data.honey;
+        honey = data.honey || 0;
 
-        clickPower = data.clickPower;
+        clickPower = data.clickPower || 1;
 
-        honeyPerSecond = data.honeyPerSecond;
+        honeyPerSecond = data.honeyPerSecond || 0;
 
-        multiplier = data.multiplier;
+        multiplier = data.multiplier || 1;
 
-        secondMultiplier = data.secondMultiplier;
+        secondMultiplier = data.secondMultiplier || 1;
 
-        upgrades = data.upgrades;
+
+
+        if(data.upgrades){
+
+            for(let i in upgrades){
+
+                if(data.upgrades[i]){
+
+                    upgrades[i] = data.upgrades[i];
+
+                }
+
+            }
+
+        }
 
 
 
@@ -675,12 +686,10 @@ function loadBackup(){
 
         alert("Progress restored!");
 
-
-
     }
 
 
-    catch {
+    catch{
 
 
         alert("Invalid backup code!");
@@ -696,7 +705,7 @@ function loadBackup(){
 
 
 
-// UPDATE SCREEN
+
 
 function update(){
 
@@ -746,15 +755,7 @@ function update(){
 
 
 
-
-
 loadGame();
 
 
 </script>
-
-<p id="auto">
-Honey per second: 0
-</p>
-
-</div>
