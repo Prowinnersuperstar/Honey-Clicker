@@ -1044,16 +1044,15 @@ function buy(type){
 
 setInterval(function(){
 
-
     honey += honeyPerSecond * secondMultiplier;
-
-
-    saveGame();
 
     update();
 
-
 },1000);
+
+
+    setInterval(saveGame,10000);
+    
     // SAVE GAME
 
 function saveGame(){
@@ -1679,7 +1678,6 @@ function checkAchievements(){
         achievements.trueHoneyKing = true;
 
 
-    saveGame();
 
 }
 
