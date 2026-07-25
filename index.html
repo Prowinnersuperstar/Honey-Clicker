@@ -1,126 +1,204 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+
 <title>Honey Click</title>
 
 <style>
 
 body {
-    text-align:center;
-    font-family:Arial,sans-serif;
-    background:#fff3a6;
-    margin:0;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background: #fff3a6;
+    margin: 0;
+    overflow-x: hidden;
 }
+
 
 h1 {
-    color:#d68b00;
+    color: #d68b00;
+    margin-top: 20px;
 }
 
+
+
+/* Honey counter */
 
 #honey {
-    font-size:40px;
-    margin-top:30px;
+    font-size: 40px;
+    margin-top: 30px;
 }
 
+
+
+/* Main honey button */
 
 #click {
-    font-size:80px;
-    background:none;
-    border:none;
-    cursor:pointer;
-    margin-top:80px;
+    font-size: 80px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-top: 60px;
 }
+
 
 #click:hover {
-    transform:scale(1.1);
+    transform: scale(1.1);
 }
 
 
 
-/* Backup */
-
-#backup {
-    position:absolute;
-    top:10px;
-    left:10px;
-    width:170px;
-    background:#fff0a8;
-    padding:8px;
-    border-radius:10px;
-    font-size:12px;
-}
-
-#backup button {
-    font-size:11px;
-    margin:3px;
-}
-
-#backup input {
-    width:150px;
-    font-size:11px;
-}
-
-#code {
-    word-break:break-all;
-    font-size:10px;
-    max-height:80px;
-    overflow-y:auto;
-    background:white;
-    padding:5px;
-    border-radius:5px;
-}
-
-
-
-/* Shop */
+/* Upgrade shop */
 
 #shop {
-    position:absolute;
-    top:10px;
-    right:10px;
-    width:180px;
-    max-height:500px;
-    overflow-y:auto;
-    background:#ffe066;
-    padding:8px;
-    border-radius:12px;
+
+    position: fixed;
+
+    right: 10px;
+
+    top: 10px;
+
+    width: 180px;
+
+    max-height: 500px;
+
+    overflow-y: auto;
+
+    background: #ffe066;
+
+    padding: 10px;
+
+    border-radius: 12px;
+
 }
+
 
 
 #shop h2 {
-    font-size:18px;
+
+    font-size: 18px;
+
 }
 
 
 
 .upgrade {
-    width:100%;
-    margin:3px;
-    padding:6px;
-    font-size:11px;
-    cursor:pointer;
-    border:none;
-    border-radius:6px;
-    background:#ff9f1c;
+
+    width: 100%;
+
+    margin: 4px;
+
+    padding: 7px;
+
+    font-size: 12px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    background: #ff9f1c;
+
 }
+
 
 
 .upgrade:hover {
-    background:#ffb84d;
+
+    background: #ffb84d;
+
 }
 
 
+
+/* Backup box */
+
+#backup {
+
+    position: fixed;
+
+    left: 10px;
+
+    top: 10px;
+
+    width: 170px;
+
+    background: #fff0a8;
+
+    padding: 8px;
+
+    border-radius: 10px;
+
+    font-size: 12px;
+
+}
+
+
+
+#backup button {
+
+    font-size: 11px;
+
+    margin: 3px;
+
+}
+
+
+
+#backup input {
+
+    width: 150px;
+
+    font-size: 11px;
+
+}
+
+
+
+#code {
+
+    word-break: break-all;
+
+    font-size: 10px;
+
+    background: white;
+
+    padding: 5px;
+
+    border-radius: 5px;
+
+}
+
+
+
+/* Stats */
 
 #stats {
-    font-size:20px;
+
+    font-size: 20px;
+
 }
+
+
+
+/* Winnie Helper */
+
 #pooh {
+
     position: fixed;
+
     width: 100px;
+
     display: none;
+
     left: 0px;
+
     top: 300px;
+
 }
+
 
 </style>
 
@@ -128,41 +206,53 @@ h1 {
 
 
 <body>
-
+    <!-- Title -->
 
 <h1>Honey Click</h1>
 
 
 
+<!-- Backup System -->
+
 <div id="backup">
 
 <h3>💾 Backup</h3>
+
 
 <button onclick="createBackup()">
 Create Code
 </button>
 
+
 <p id="code">
 No code created
 </p>
+
 
 <button onclick="copyCode()">
 Copy Code
 </button>
 
+
 <br>
 
+
 <input id="restoreInput" placeholder="Enter backup code">
+
 
 <button onclick="loadBackup()">
 Load
 </button>
+
 
 </div>
 
 
 
 
+
+
+<!-- Honey Counter -->
 
 <div id="honey">
 🍯 Honey: 0
@@ -170,15 +260,28 @@ Load
 
 
 
+
+
+<!-- Main Click Button -->
+
 <button id="click" onclick="clickHoney()">
 🍯
 </button>
-    
+
+
+
+
+
+<!-- Winnie Helper Image -->
+
 <img id="pooh" src="https://plain-apac-prod-public.komododecks.com/202607/25/Pe7GYhaO6FSQxKeVEa3X/image.png">
 
 
 
 
+
+
+<!-- Upgrade Shop -->
 
 <div id="shop">
 
@@ -187,117 +290,208 @@ Load
 
 
 <button class="upgrade" onclick="buy('click')">
+
 🍯 Honey Clicker<br>
+
 +1 Click<br>
+
 Cost: <span id="clickCost"></span>
+
 </button>
+
 
 
 
 <button class="upgrade" onclick="buy('bee')">
+
 🐝 Bee Helper<br>
+
 +1/sec<br>
+
 Cost: <span id="beeCost"></span>
+
 </button>
 
 
-    <button class="upgrade" onclick="buy('pooh')">
+
+
+
+<button class="upgrade" onclick="buy('pooh')">
+
 🐻 Winnie Helper<br>
-+<span id="poohPower">1</span> honey every 0.5 sec<br>
+
++1 honey every 0.5 sec<br>
+
 Cost: <span id="poohCost"></span>
+
 </button>
+
+
+
 
 
 <button class="upgrade" onclick="buy('hive')">
+
 🏠 Bigger Hive<br>
-+10 Honey/sec<br>
+
++10/sec<br>
+
 Cost: <span id="hiveCost"></span>
+
 </button>
+
+
+
 
 
 <button class="upgrade" onclick="buy('machine')">
+
 🍯 Honey Machine<br>
-+100 Honey/sec<br>
+
++100/sec<br>
+
 Cost: <span id="machineCost"></span>
+
 </button>
+
+
+
 
 
 <button class="upgrade" onclick="buy('royal')">
+
 👑 Royal Hive<br>
-+1000 Honey/sec<br>
+
++1000/sec<br>
+
 Cost: <span id="royalCost"></span>
+
 </button>
+
+
 
 
 
 <button class="upgrade" onclick="buy('gold')">
+
 ✨ Golden Bee<br>
+
 +5/sec<br>
+
 Cost: <span id="goldCost"></span>
+
 </button>
+
+
 
 
 
 <button class="upgrade" onclick="buy('queen')">
+
 👑 Queen Bee<br>
+
 +25/sec<br>
+
 Cost: <span id="queenCost"></span>
+
 </button>
+
+
 
 
 
 <button class="upgrade" onclick="buy('garden')">
+
 🌸 Flower Garden<br>
+
 x2/sec<br>
+
 Cost: <span id="gardenCost"></span>
+
 </button>
+
+
 
 
 
 <button class="upgrade" onclick="buy('extractor')">
+
 🧪 Honey Extractor<br>
+
 +100/sec<br>
+
 Cost: <span id="extractorCost"></span>
+
 </button>
+
+
 
 
 
 <button class="upgrade" onclick="buy('farm')">
+
 🐝 Bee Farm<br>
+
 +250/sec<br>
+
 Cost: <span id="farmCost"></span>
+
 </button>
+
+
 
 
 
 <button class="upgrade" onclick="buy('mega')">
+
 🏭 Mega Extractor<br>
+
 +1000/sec<br>
+
 Cost: <span id="megaCost"></span>
+
 </button>
+
+
 
 
 
 <button class="upgrade" onclick="buy('forest')">
+
 🌳 Golden Forest<br>
+
 x3/sec<br>
+
 Cost: <span id="forestCost"></span>
+
 </button>
+
+
 
 
 
 <button class="upgrade" onclick="buy('kingdom')">
+
 👑 Bee Kingdom<br>
+
 +5000/sec<br>
+
 Cost: <span id="kingdomCost"></span>
+
 </button>
+
+
 
 
 
 <button class="upgrade" onclick="buy('factory')">
+
 🚀 Honey Factory<br>
+
 +25000/sec<br>
+
 Cost: <span id="factoryCost"></span>
+
 </button>
 
 
@@ -308,31 +502,51 @@ Cost: <span id="factoryCost"></span>
 
 
 
+
+
+<!-- Stats -->
+
 <div id="stats">
 
+
 <p id="power">
+
 Honey per click: 1
+
 </p>
+
 
 
 <p id="auto">
+
 Honey per second: 0
+
 </p>
 
-</div>
 
+
+</div>
 <script>
 
 let honey = 0;
+
 let clickPower = 1;
+
 let honeyPerSecond = 0;
 
+
 let multiplier = 1;
+
 let secondMultiplier = 1;
 
+
+
 let poohLevel = 0;
+
 let poohHoney = 1;
+
 let poohActive = false;
+
 
 
 let upgrades = {
@@ -341,12 +555,12 @@ click:{cost:10},
 
 bee:{cost:50},
 
+pooh:{cost:500},
+
 hive:{cost:200},
 
 machine:{cost:1000},
 
-pooh:{cost:500},    
-    
 royal:{cost:10000},
 
 gold:{cost:500},
@@ -370,7 +584,10 @@ factory:{cost:1000000000}
 };
 
 
+
 let backupCode = "";
+
+
 
 
 
@@ -381,6 +598,7 @@ function clickHoney(){
     honey += clickPower * multiplier;
 
     saveGame();
+
     update();
 
 }
@@ -391,9 +609,13 @@ function clickHoney(){
 
 
 
+
+
 function buy(type){
 
+
     let cost = upgrades[type].cost;
+
 
 
     if(honey >= cost){
@@ -403,79 +625,128 @@ function buy(type){
 
 
 
-        if(type=="click")
+        if(type=="click"){
+
             clickPower += 1;
 
+        }
 
 
-        if(type=="bee")
+
+        if(type=="bee"){
+
             honeyPerSecond += 1;
+
+        }
+
 
 
         if(type=="pooh"){
 
-    poohLevel++;
+            poohLevel++;
 
-    poohHoney = poohLevel;
+            poohHoney = poohLevel;
 
-    startPooh();
+            startPooh();
 
-}
-
-
-        if(type=="hive")
-    honeyPerSecond += 10;
-
-if(type=="machine")
-    honeyPerSecond += 100;
-
-if(type=="royal")
-    honeyPerSecond += 1000;
+        }
 
 
 
-        if(type=="gold")
-            honeyPerSecond += 5;
+        if(type=="hive"){
+
+            honeyPerSecond += 10;
+
+        }
 
 
 
-        if(type=="queen")
-            honeyPerSecond += 25;
+        if(type=="machine"){
 
-
-
-        if(type=="garden")
-            secondMultiplier *= 2;
-
-
-
-        if(type=="extractor")
             honeyPerSecond += 100;
 
-
-
-        if(type=="farm")
-            honeyPerSecond += 250;
+        }
 
 
 
-        if(type=="mega")
+        if(type=="royal"){
+
             honeyPerSecond += 1000;
 
+        }
 
 
-        if(type=="forest")
+
+        if(type=="gold"){
+
+            honeyPerSecond += 5;
+
+        }
+
+
+
+        if(type=="queen"){
+
+            honeyPerSecond += 25;
+
+        }
+
+
+
+        if(type=="garden"){
+
+            secondMultiplier *= 2;
+
+        }
+
+
+
+        if(type=="extractor"){
+
+            honeyPerSecond += 100;
+
+        }
+
+
+
+        if(type=="farm"){
+
+            honeyPerSecond += 250;
+
+        }
+
+
+
+        if(type=="mega"){
+
+            honeyPerSecond += 1000;
+
+        }
+
+
+
+        if(type=="forest"){
+
             secondMultiplier *= 3;
 
+        }
 
 
-        if(type=="kingdom")
+
+        if(type=="kingdom"){
+
             honeyPerSecond += 5000;
 
+        }
 
 
-        if(type=="factory")
+
+        if(type=="factory"){
+
             honeyPerSecond += 25000;
+
+        }
+
 
 
 
@@ -483,11 +754,15 @@ if(type=="royal")
 
 
         saveGame();
+
         update();
+
 
     }
 
+
 }
+
 
 
 
@@ -498,28 +773,25 @@ if(type=="royal")
 
 setInterval(function(){
 
+
     honey += honeyPerSecond * secondMultiplier;
 
+
     saveGame();
+
     update();
 
+
 },1000);
+    
 
 
-
-
-
-
-
-
-
-
-// SAVE TO DEVICE
-
+// SAVE GAME
 
 function saveGame(){
 
     localStorage.setItem(
+
         "HoneyClickSave",
 
         JSON.stringify({
@@ -534,7 +806,7 @@ function saveGame(){
 
             secondMultiplier,
 
-            upgrades
+            upgrades,
 
             poohLevel,
 
@@ -552,6 +824,7 @@ function saveGame(){
 
 
 
+// LOAD GAME
 
 function loadGame(){
 
@@ -559,10 +832,12 @@ function loadGame(){
     let save = localStorage.getItem("HoneyClickSave");
 
 
+
     if(save){
 
 
         let data = JSON.parse(save);
+
 
 
         honey = data.honey || 0;
@@ -574,16 +849,7 @@ function loadGame(){
         multiplier = data.multiplier || 1;
 
         secondMultiplier = data.secondMultiplier || 1;
-        poohLevel = data.poohLevel || 0;
 
-poohHoney = data.poohHoney || 1;
-
-
-if(poohLevel > 0){
-
-    startPooh();
-
-}
 
 
         if(data.upgrades){
@@ -600,10 +866,26 @@ if(poohLevel > 0){
 
         }
 
+
+
+        poohLevel = data.poohLevel || 0;
+
+        poohHoney = data.poohHoney || 1;
+
+
+
+        if(poohLevel > 0){
+
+            startPooh();
+
+        }
+
+
     }
 
 
     update();
+
 
 }
 
@@ -614,9 +896,7 @@ if(poohLevel > 0){
 
 
 
-
 // BACKUP CODE
-
 
 function createBackup(){
 
@@ -634,10 +914,15 @@ function createBackup(){
 
         secondMultiplier,
 
-        upgrades
+        upgrades,
+
+        poohLevel,
+
+        poohHoney
 
 
     };
+
 
 
     backupCode = "HNY-" + btoa(JSON.stringify(save));
@@ -647,6 +932,7 @@ function createBackup(){
 
 
 }
+
 
 
 
@@ -673,6 +959,7 @@ function loadBackup(){
 
 
     let code = document.getElementById("restoreInput").value;
+
 
 
     try{
@@ -714,9 +1001,24 @@ function loadBackup(){
 
 
 
+        poohLevel = data.poohLevel || 0;
+
+        poohHoney = data.poohHoney || 1;
+
+
+
+        if(poohLevel > 0){
+
+            startPooh();
+
+        }
+
+
+
         saveGame();
 
         update();
+
 
 
         alert("Progress restored!");
@@ -727,7 +1029,7 @@ function loadBackup(){
     catch{
 
 
-        alert("Invalid backup code!");
+        alert("Invalid code!");
 
     }
 
@@ -741,6 +1043,135 @@ function loadBackup(){
 
 
 
+// POOH HELPER
+
+function startPooh(){
+
+
+    let pooh = document.getElementById("pooh");
+
+
+    pooh.style.display = "block";
+
+
+
+    if(!poohActive){
+
+
+        poohActive = true;
+
+
+        movePooh();
+
+
+    }
+
+
+}
+
+
+
+
+
+
+
+
+function movePooh(){
+
+
+    let pooh = document.getElementById("pooh");
+
+
+    let x = 0;
+
+    let y = 300;
+
+
+    let speedX = 3;
+
+    let speedY = 2;
+
+
+
+    function animate(){
+
+
+        x += speedX;
+
+        y += speedY;
+
+
+
+        if(x + pooh.width >= window.innerWidth || x <= 0){
+
+            speedX *= -1;
+
+        }
+
+
+
+        if(y + pooh.height >= window.innerHeight || y <= 0){
+
+            speedY *= -1;
+
+        }
+
+
+
+        pooh.style.left = x + "px";
+
+        pooh.style.top = y + "px";
+
+
+
+        requestAnimationFrame(animate);
+
+
+    }
+
+
+    animate();
+
+
+}
+
+
+
+
+
+
+
+
+// POOH MAKES HONEY
+
+setInterval(function(){
+
+
+    if(poohLevel > 0){
+
+
+        honey += poohHoney;
+
+
+        update();
+
+
+        saveGame();
+
+
+    }
+
+
+},500);
+
+
+
+
+
+
+
+
+// UPDATE SCREEN
 
 function update(){
 
@@ -751,13 +1182,11 @@ function update(){
 
 
 
-
     document.getElementById("power").innerHTML =
 
-    "Honey per click: " + 
+    "Honey per click: " +
 
     Math.floor(clickPower * multiplier);
-
 
 
 
@@ -778,8 +1207,10 @@ function update(){
 
         if(element){
 
+
             element.innerHTML = upgrades[i].cost;
 
+
         }
 
 
@@ -789,89 +1220,16 @@ function update(){
 }
 
 
-function startPooh(){
-
-    let pooh = document.getElementById("pooh");
-
-    pooh.style.display = "block";
-
-
-    if(!poohActive){
-
-        poohActive = true;
-
-        movePooh();
-
-    }
-
-}
-
-
-
-function movePooh(){
-
-    let pooh = document.getElementById("pooh");
-
-
-    let x = 0;
-    let y = 300;
-
-    let speedX = 3;
-    let speedY = 2;
-
-
-    function animate(){
-
-        x += speedX;
-        y += speedY;
-
-
-        if(x + pooh.width >= window.innerWidth || x <= 0){
-
-            speedX *= -1;
-
-        }
-
-
-        if(y + pooh.height >= window.innerHeight || y <= 0){
-
-            speedY *= -1;
-
-        }
-
-
-        pooh.style.left = x + "px";
-        pooh.style.top = y + "px";
-
-
-        requestAnimationFrame(animate);
-
-    }
-
-
-    animate();
-
-}
 
 
 
 
-
-
-setInterval(function(){
-
-    if(poohLevel > 0){
-
-        honey += poohHoney;
-
-        update();
-
-        saveGame();
-
-    }
-
-},500);
 loadGame();
 
 
 </script>
+
+
+</body>
+
+</html>
