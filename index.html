@@ -767,7 +767,12 @@ let totalClicks = 0;
 
 let upgradesBought = 0;
 
-let sessionStart = Date.now();
+let sessionStart = localStorage.getItem("HoneySessionStart") || Date.now();
+
+localStorage.setItem(
+    "HoneySessionStart",
+    sessionStart
+);
 
 let lastPlayed = Date.now();
 
@@ -1160,11 +1165,11 @@ function loadGame(){
 
 
 
-       if(data.upgrades){
+if(data.upgrades){
 
-    for(let item in data.upgrades){
+    for(let item in upgrades){
 
-        if(upgrades[item]){
+        if(data.upgrades[item] && data.upgrades[item].cost){
 
             upgrades[item].cost = data.upgrades[item].cost;
 
@@ -1316,56 +1321,40 @@ function rebirth(){
 
 function createBackup(){
 
-
     let save = {
 
-
         honey,
-
         clickPower,
-
         honeyPerSecond,
 
         multiplier,
-
         secondMultiplier,
 
-
         poohLevel,
-
         poohHoney,
-
         poohTotalHoney,
 
-
         rebirths,
-
         rebirthMultiplier,
-
 
         upgrades,
 
-
         totalClicks,
-
         upgradesBought,
 
-
         achievements
-
 
     };
 
 
-
-    backupCode = "HNY-" + btoa(JSON.stringify(save));
+    backupCode = "HNY-" + encodeURIComponent(
+        btoa(unescape(encodeURIComponent(JSON.stringify(save))))
+    );
 
 
     document.getElementById("code").innerHTML = backupCode;
 
-
 }
-
 
 
 
@@ -1391,20 +1380,18 @@ function copyCode(){
 
 function loadBackup(){
 
-
     let code = document.getElementById("restoreInput").value;
-
 
 
     try {
 
-
         let data = JSON.parse(
-
-            atob(code.replace("HNY-",""))
-
+            decodeURIComponent(
+                escape(
+                    atob(code.replace("HNY-",""))
+                )
+            )
         );
-
 
 
         honey = data.honey || 0;
@@ -1419,7 +1406,6 @@ function loadBackup(){
         secondMultiplier = data.secondMultiplier || 1;
 
 
-
         poohLevel = data.poohLevel || 0;
 
         poohHoney = data.poohHoney || 1;
@@ -1427,18 +1413,31 @@ function loadBackup(){
         poohTotalHoney = data.poohTotalHoney || 0;
 
 
-
         rebirths = data.rebirths || 0;
 
         rebirthMultiplier = data.rebirthMultiplier || 1;
 
 
+        if(data.upgrades){
 
-        upgrades = data.upgrades || upgrades;
+            for(let item in upgrades){
+
+                if(data.upgrades[item]){
+
+                    upgrades[item].cost = data.upgrades[item].cost;
+
+                }
+
+            }
+
+        }
 
 
-        achievements = data.achievements || achievements;
+        if(data.achievements){
 
+            achievements = data.achievements;
+
+        }
 
 
         saveGame();
@@ -1446,29 +1445,20 @@ function loadBackup(){
         update();
 
 
-
         alert("Backup loaded!");
-
 
     }
 
 
-    catch {
+    catch(error){
 
+        console.log(error);
 
         alert("Invalid backup code!");
 
     }
 
-
 }
-
-
-
-
-
-
-
 // POOH
 
 function startPooh(){
@@ -1635,21 +1625,20 @@ function checkAchievements(){
         achievements.beeKeeper = true;
 
 
-    // FIXED: checks bought amount instead of cost
-    if(upgrades.hive.cost > 200)
-        achievements.hiveOwner = true;
+   if(upgrades.hive && upgrades.hive.cost > 200)
+    achievements.hiveOwner = true;
 
 
-    if(upgrades.extractor.cost > 10000)
-        achievements.scientistBee = true;
+if(upgrades.extractor && upgrades.extractor.cost > 10000)
+    achievements.scientistBee = true;
 
 
-    if(upgrades.factory.cost > 1000000000)
-        achievements.factoryOwner = true;
+if(upgrades.factory && upgrades.factory.cost > 1000000000)
+    achievements.factoryOwner = true;
 
 
-    if(upgrades.kingdom.cost > 25000000)
-        achievements.beeKingdom = true;
+if(upgrades.kingdom && upgrades.kingdom.cost > 25000000)
+    achievements.beeKingdom = true;
 
 
     if(totalClicks >= 100)
