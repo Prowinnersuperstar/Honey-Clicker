@@ -8,22 +8,30 @@
 <style>
 
 body {
+
     text-align: center;
+
     font-family: Arial, sans-serif;
+
     background: #fff3a6;
+
     margin: 0;
+
     overflow-x: hidden;
+
 }
+
 
 
 h1 {
+
     color: #d68b00;
+
     margin-top: 20px;
+
 }
 
 
-
-/* Honey counter */
 
 #honey {
 
@@ -35,7 +43,7 @@ h1 {
 
 
 
-/* Main click button */
+
 
 #click {
 
@@ -52,6 +60,7 @@ h1 {
 }
 
 
+
 #click:hover {
 
     transform: scale(1.1);
@@ -62,8 +71,6 @@ h1 {
 
 
 
-/* Upgrade shop */
-
 #shop {
 
     position: fixed;
@@ -72,9 +79,9 @@ h1 {
 
     top: 10px;
 
-    width: 180px;
+    width: 190px;
 
-    max-height: 500px;
+    max-height: 600px;
 
     overflow-y: auto;
 
@@ -88,11 +95,15 @@ h1 {
 
 
 
+
+
 #shop h2 {
 
-    font-size: 18px;
+    font-size: 20px;
 
 }
+
+
 
 
 
@@ -102,7 +113,7 @@ h1 {
 
     margin: 4px;
 
-    padding: 7px;
+    padding: 8px;
 
     font-size: 12px;
 
@@ -128,8 +139,6 @@ h1 {
 
 
 
-/* Backup */
-
 #backup {
 
     position: fixed;
@@ -138,11 +147,11 @@ h1 {
 
     top: 10px;
 
-    width: 170px;
+    width: 180px;
 
     background: #fff0a8;
 
-    padding: 8px;
+    padding: 10px;
 
     border-radius: 10px;
 
@@ -152,19 +161,19 @@ h1 {
 
 
 
-#backup button {
+#backup input {
+
+    width: 160px;
 
     font-size: 11px;
-
-    margin: 3px;
 
 }
 
 
 
-#backup input {
+#backup button {
 
-    width: 150px;
+    margin: 3px;
 
     font-size: 11px;
 
@@ -176,21 +185,19 @@ h1 {
 
     word-break: break-all;
 
-    font-size: 10px;
-
     background: white;
 
     padding: 5px;
 
     border-radius: 5px;
 
+    font-size: 10px;
+
 }
 
 
 
 
-
-/* Stats */
 
 #stats {
 
@@ -202,7 +209,65 @@ h1 {
 
 
 
-/* Pooh helper */
+#rebirthStat {
+
+    font-size: 18px;
+
+}
+
+
+
+
+
+#achievements {
+
+    position: fixed;
+
+    left: 10px;
+
+    bottom: 10px;
+
+    width: 220px;
+
+    max-height: 250px;
+
+    overflow-y: auto;
+
+    background: #ffd966;
+
+    padding: 10px;
+
+    border-radius: 12px;
+
+    font-size: 13px;
+
+}
+
+
+
+#achievements h2 {
+
+    font-size: 18px;
+
+}
+
+
+
+.badge {
+
+    background: #fff3a6;
+
+    padding: 5px;
+
+    margin: 4px;
+
+    border-radius: 6px;
+
+}
+
+
+
+
 
 #pooh {
 
@@ -221,6 +286,7 @@ h1 {
 
 
 </style>
+
 
 </head>
 
@@ -288,6 +354,7 @@ Load
 🍯
 
 </button>
+
 
 
 
@@ -544,6 +611,7 @@ Requires: 1,000,000 Honey<br>
 
 
 
+
 <div id="stats">
 
 
@@ -562,12 +630,35 @@ Honey per second: 0
 </p>
 
 
+
 <p id="rebirthStat">
 
 Rebirths: 0 | Bonus: x1
 
 </p>
 
+
+
+</div>
+
+
+
+
+
+
+
+
+<div id="achievements">
+
+
+<h2>🏅 Achievements</h2>
+
+
+<p id="achievementList">
+
+No achievements unlocked yet
+
+</p>
 
 
 </div>
@@ -586,15 +677,21 @@ let secondMultiplier = 1;
 
 
 
+
+// Pooh
+
 let poohLevel = 0;
 
 let poohHoney = 1;
 
 let poohActive = false;
 
+let poohTotalHoney = 0;
 
 
-// Rebirth system
+
+
+// Rebirth
 
 let rebirths = 0;
 
@@ -604,7 +701,82 @@ let rebirthMultiplier = 1;
 
 
 
+// Achievements
+
+let achievements = {
+
+    firstHoney:false,
+
+    thousandHoney:false,
+
+    millionHoney:false,
+
+    billionHoney:false,
+
+    trillionHoney:false,
+
+
+    firstRebirth:false,
+
+    tenRebirths:false,
+
+    hundredRebirths:false,
+
+
+    poohFriend:false,
+
+    poohHelper:false,
+
+    poohKing:false,
+
+
+    beeKeeper:false,
+
+    hiveOwner:false,
+
+    scientistBee:false,
+
+    factoryOwner:false,
+
+    beeKingdom:false,
+
+
+    hundredClicks:false,
+
+    tenThousandClicks:false,
+
+    millionClicks:false,
+
+
+    luckyBee:false,
+
+    lateNightBee:false,
+
+    sleepingBee:false,
+
+    beeCollector:false,
+
+    trueHoneyKing:false
+
+};
+
+
+
+let totalClicks = 0;
+
+let upgradesBought = 0;
+
+let sessionStart = Date.now();
+
+let lastPlayed = Date.now();
+
+
+
+
+
+
 let upgrades = {
+
 
 click:{cost:10},
 
@@ -636,7 +808,10 @@ kingdom:{cost:25000000},
 
 factory:{cost:1000000000}
 
+
 };
+
+
 
 
 
@@ -652,6 +827,9 @@ function clickHoney(){
 
 
     honey += clickPower * multiplier * rebirthMultiplier;
+
+
+    totalClicks++;
 
 
     saveGame();
@@ -681,12 +859,18 @@ function buy(type){
         honey -= cost;
 
 
+        upgradesBought++;
+
+
+
 
         if(type=="click"){
 
             clickPower += 1;
 
         }
+
+
 
 
 
@@ -698,15 +882,23 @@ function buy(type){
 
 
 
+
+
         if(type=="pooh"){
+
 
             poohLevel++;
 
+
             poohHoney = poohLevel;
+
 
             startPooh();
 
+
         }
+
+
 
 
 
@@ -718,11 +910,15 @@ function buy(type){
 
 
 
+
+
         if(type=="machine"){
 
             honeyPerSecond += 100;
 
         }
+
+
 
 
 
@@ -734,11 +930,15 @@ function buy(type){
 
 
 
+
+
         if(type=="gold"){
 
             honeyPerSecond += 5;
 
         }
+
+
 
 
 
@@ -750,11 +950,15 @@ function buy(type){
 
 
 
+
+
         if(type=="garden"){
 
             secondMultiplier *= 2;
 
         }
+
+
 
 
 
@@ -766,11 +970,15 @@ function buy(type){
 
 
 
+
+
         if(type=="farm"){
 
             honeyPerSecond += 250;
 
         }
+
+
 
 
 
@@ -782,11 +990,15 @@ function buy(type){
 
 
 
+
+
         if(type=="forest"){
 
             secondMultiplier *= 3;
 
         }
+
+
 
 
 
@@ -798,6 +1010,8 @@ function buy(type){
 
 
 
+
+
         if(type=="factory"){
 
             honeyPerSecond += 25000;
@@ -806,7 +1020,9 @@ function buy(type){
 
 
 
+
         upgrades[type].cost *= 2;
+
 
 
         saveGame();
@@ -818,7 +1034,6 @@ function buy(type){
 
 
 }
-
 
 
 
@@ -842,6 +1057,7 @@ setInterval(function(){
 
 function saveGame(){
 
+
     localStorage.setItem(
 
         "HoneyClickSave",
@@ -858,19 +1074,37 @@ function saveGame(){
 
             secondMultiplier,
 
-            upgrades,
 
             poohLevel,
 
             poohHoney,
 
+            poohTotalHoney,
+
+
             rebirths,
 
-            rebirthMultiplier
+            rebirthMultiplier,
+
+
+            upgrades,
+
+
+            totalClicks,
+
+            upgradesBought,
+
+
+            achievements,
+
+
+            lastPlayed
+
 
         })
 
     );
+
 
 }
 
@@ -902,25 +1136,10 @@ function loadGame(){
 
         honeyPerSecond = data.honeyPerSecond || 0;
 
+
         multiplier = data.multiplier || 1;
 
         secondMultiplier = data.secondMultiplier || 1;
-
-
-
-        if(data.upgrades){
-
-            for(let i in upgrades){
-
-                if(data.upgrades[i]){
-
-                    upgrades[i] = data.upgrades[i];
-
-                }
-
-            }
-
-        }
 
 
 
@@ -928,11 +1147,39 @@ function loadGame(){
 
         poohHoney = data.poohHoney || 1;
 
+        poohTotalHoney = data.poohTotalHoney || 0;
+
 
 
         rebirths = data.rebirths || 0;
 
         rebirthMultiplier = data.rebirthMultiplier || 1;
+
+
+
+        totalClicks = data.totalClicks || 0;
+
+        upgradesBought = data.upgradesBought || 0;
+
+
+
+        if(data.upgrades){
+
+            upgrades = data.upgrades;
+
+        }
+
+
+
+        if(data.achievements){
+
+            achievements = data.achievements;
+
+        }
+
+
+
+        lastPlayed = data.lastPlayed || Date.now();
 
 
 
@@ -988,9 +1235,12 @@ function rebirth(){
 
         poohHoney = 1;
 
+        poohTotalHoney = 0;
+
 
 
         upgrades = {
+
 
             click:{cost:10},
 
@@ -1022,6 +1272,7 @@ function rebirth(){
 
             factory:{cost:1000000000}
 
+
         };
 
 
@@ -1031,20 +1282,24 @@ function rebirth(){
         update();
 
 
-        alert("Rebirth complete! +" + (rebirths * 0.2) + "x click bonus");
+
+        alert("🔄 Rebirth complete! Click bonus: x" + rebirthMultiplier);
 
 
     }
 
-    else{
+
+    else {
 
 
-        alert("You need 1,000,000 Honey!");
+        alert("You need 1,000,000 honey!");
 
     }
 
 
 }
+
+
 
 
 
@@ -1070,15 +1325,28 @@ function createBackup(){
 
         secondMultiplier,
 
-        upgrades,
 
         poohLevel,
 
         poohHoney,
 
+        poohTotalHoney,
+
+
         rebirths,
 
-        rebirthMultiplier
+        rebirthMultiplier,
+
+
+        upgrades,
+
+
+        totalClicks,
+
+        upgradesBought,
+
+
+        achievements
 
 
     };
@@ -1107,6 +1375,7 @@ function copyCode(){
 
     alert("Backup copied!");
 
+
 }
 
 
@@ -1122,7 +1391,7 @@ function loadBackup(){
 
 
 
-    try{
+    try {
 
 
         let data = JSON.parse(
@@ -1139,6 +1408,7 @@ function loadBackup(){
 
         honeyPerSecond = data.honeyPerSecond || 0;
 
+
         multiplier = data.multiplier || 1;
 
         secondMultiplier = data.secondMultiplier || 1;
@@ -1149,6 +1419,8 @@ function loadBackup(){
 
         poohHoney = data.poohHoney || 1;
 
+        poohTotalHoney = data.poohTotalHoney || 0;
+
 
 
         rebirths = data.rebirths || 0;
@@ -1157,17 +1429,26 @@ function loadBackup(){
 
 
 
+        upgrades = data.upgrades || upgrades;
+
+
+        achievements = data.achievements || achievements;
+
+
+
         saveGame();
 
         update();
 
 
-        alert("Progress loaded!");
+
+        alert("Backup loaded!");
+
 
     }
 
 
-    catch{
+    catch {
 
 
         alert("Invalid backup code!");
@@ -1183,7 +1464,7 @@ function loadBackup(){
 
 
 
-// POOH HELPER
+// POOH
 
 function startPooh(){
 
@@ -1280,7 +1561,7 @@ function movePooh(){
 
 
 
-// POOH MAKES HONEY
+// POOH MAKES HONEY EVERY 0.5 SECONDS
 
 setInterval(function(){
 
@@ -1289,6 +1570,9 @@ setInterval(function(){
 
 
         honey += poohHoney;
+
+
+        poohTotalHoney += poohHoney;
 
 
         update();
@@ -1300,6 +1584,182 @@ setInterval(function(){
 
 
 },500);
+    <script>
+
+let honey = 0;
+
+let clickPower = 1;
+
+let honeyPerSecond = 0;
+
+
+let multiplier = 1;
+
+let secondMultiplier = 1;
+
+
+
+
+// Pooh
+
+let poohLevel = 0;
+
+let poohHoney = 1;
+
+let poohActive = false;
+
+let poohTotalHoney = 0;
+
+
+
+
+// Rebirth
+
+let rebirths = 0;
+
+let rebirthMultiplier = 1;
+
+
+
+
+
+// Achievements
+
+let achievements = {
+
+    firstHoney:false,
+
+    thousandHoney:false,
+
+    millionHoney:false,
+
+    billionHoney:false,
+
+    trillionHoney:false,
+
+
+    firstRebirth:false,
+
+    tenRebirths:false,
+
+    hundredRebirths:false,
+
+
+    poohFriend:false,
+
+    poohHelper:false,
+
+    poohKing:false,
+
+
+    beeKeeper:false,
+
+    hiveOwner:false,
+
+    scientistBee:false,
+
+    factoryOwner:false,
+
+    beeKingdom:false,
+
+
+    hundredClicks:false,
+
+    tenThousandClicks:false,
+
+    millionClicks:false,
+
+
+    luckyBee:false,
+
+    lateNightBee:false,
+
+    sleepingBee:false,
+
+    beeCollector:false,
+
+    trueHoneyKing:false
+
+};
+
+
+
+let totalClicks = 0;
+
+let upgradesBought = 0;
+
+let sessionStart = Date.now();
+
+let lastPlayed = Date.now();
+
+
+
+
+
+
+let upgrades = {
+
+
+click:{cost:10},
+
+bee:{cost:50},
+
+pooh:{cost:500},
+
+hive:{cost:200},
+
+machine:{cost:1000},
+
+royal:{cost:10000},
+
+gold:{cost:500},
+
+queen:{cost:2000},
+
+garden:{cost:5000},
+
+extractor:{cost:10000},
+
+farm:{cost:250000},
+
+mega:{cost:1000000},
+
+forest:{cost:5000000},
+
+kingdom:{cost:25000000},
+
+factory:{cost:1000000000}
+
+
+};
+
+
+
+
+
+let backupCode = "";
+
+
+
+
+
+
+
+function clickHoney(){
+
+
+    honey += clickPower * multiplier * rebirthMultiplier;
+
+
+    totalClicks++;
+
+
+    saveGame();
+
+    update();
+
+
+}
 
 
 
@@ -1308,57 +1768,188 @@ setInterval(function(){
 
 
 
-// UPDATE
-
-function update(){
+function buy(type){
 
 
-    document.getElementById("honey").innerHTML =
-
-    "🍯 Honey: " + Math.floor(honey);
+    let cost = upgrades[type].cost;
 
 
 
-    document.getElementById("power").innerHTML =
-
-    "Honey per click: " +
-
-    Math.floor(clickPower * multiplier * rebirthMultiplier);
+    if(honey >= cost){
 
 
-
-    document.getElementById("auto").innerHTML =
-
-    "Honey per second: " +
-
-    Math.floor(honeyPerSecond * secondMultiplier);
+        honey -= cost;
 
 
-
-    document.getElementById("rebirthStat").innerHTML =
-
-    "Rebirths: " + rebirths +
-
-    " | Bonus: x" +
-
-    rebirthMultiplier;
+        upgradesBought++;
 
 
 
 
-    for(let i in upgrades){
+        if(type=="click"){
+
+            clickPower += 1;
+
+        }
 
 
-        let element = document.getElementById(i+"Cost");
 
 
-        if(element){
+
+        if(type=="bee"){
+
+            honeyPerSecond += 1;
+
+        }
 
 
-            element.innerHTML = upgrades[i].cost;
+
+
+
+        if(type=="pooh"){
+
+
+            poohLevel++;
+
+
+            poohHoney = poohLevel;
+
+
+            startPooh();
 
 
         }
+
+
+
+
+
+        if(type=="hive"){
+
+            honeyPerSecond += 10;
+
+        }
+
+
+
+
+
+        if(type=="machine"){
+
+            honeyPerSecond += 100;
+
+        }
+
+
+
+
+
+        if(type=="royal"){
+
+            honeyPerSecond += 1000;
+
+        }
+
+
+
+
+
+        if(type=="gold"){
+
+            honeyPerSecond += 5;
+
+        }
+
+
+
+
+
+        if(type=="queen"){
+
+            honeyPerSecond += 25;
+
+        }
+
+
+
+
+
+        if(type=="garden"){
+
+            secondMultiplier *= 2;
+
+        }
+
+
+
+
+
+        if(type=="extractor"){
+
+            honeyPerSecond += 100;
+
+        }
+
+
+
+
+
+        if(type=="farm"){
+
+            honeyPerSecond += 250;
+
+        }
+
+
+
+
+
+        if(type=="mega"){
+
+            honeyPerSecond += 1000;
+
+        }
+
+
+
+
+
+        if(type=="forest"){
+
+            secondMultiplier *= 3;
+
+        }
+
+
+
+
+
+        if(type=="kingdom"){
+
+            honeyPerSecond += 5000;
+
+        }
+
+
+
+
+
+        if(type=="factory"){
+
+            honeyPerSecond += 25000;
+
+        }
+
+
+
+
+        upgrades[type].cost *= 2;
+
+
+
+        saveGame();
+
+        update();
 
 
     }
@@ -1371,12 +1962,566 @@ function update(){
 
 
 
-loadGame();
+
+setInterval(function(){
 
 
-</script>
+    honey += honeyPerSecond * secondMultiplier;
 
 
-</body>
+    saveGame();
 
-</html>
+    update();
+
+
+},1000);
+    // ACHIEVEMENT DISPLAY
+
+function updateAchievements(){
+
+
+    let list = "";
+
+
+
+    if(achievements.firstHoney)
+        list += "🍯 First Drop<br>";
+
+    if(achievements.thousandHoney)
+        list += "🐝 Busy Bee<br>";
+
+    if(achievements.millionHoney)
+        list += "🍯✨ Sweet Million<br>";
+
+    if(achievements.billionHoney)
+        list += "👑 Honey Tycoon<br>";
+
+    if(achievements.trillionHoney)
+        list += "🌌 Infinite Honey<br>";
+
+
+
+
+    if(achievements.firstRebirth)
+        list += "🔄 Second Chance<br>";
+
+    if(achievements.tenRebirths)
+        list += "♻️ Rebirth Master<br>";
+
+    if(achievements.hundredRebirths)
+        list += "🌟 Eternal Bee<br>";
+
+
+
+
+    if(achievements.poohFriend)
+        list += "🐻 Pooh Friend<br>";
+
+    if(achievements.poohHelper)
+        list += "🍯🐻 Pooh's Assistant<br>";
+
+    if(achievements.poohKing)
+        list += "👑🐻 Pooh King<br>";
+
+
+
+
+    if(achievements.beeKeeper)
+        list += "🐝 Bee Keeper<br>";
+
+    if(achievements.hiveOwner)
+        list += "🏠 Hive Owner<br>";
+
+    if(achievements.scientistBee)
+        list += "🧪 Scientist Bee<br>";
+
+    if(achievements.factoryOwner)
+        list += "🏭 Factory Owner<br>";
+
+    if(achievements.beeKingdom)
+        list += "👑 Bee Kingdom<br>";
+
+
+
+
+    if(achievements.hundredClicks)
+        list += "👆 Finger Workout<br>";
+
+    if(achievements.tenThousandClicks)
+        list += "💪 Dedicated Clicker<br>";
+
+    if(achievements.millionClicks)
+        list += "⚡ Click Legend<br>";
+
+
+
+
+    if(achievements.luckyBee)
+        list += "🌈 Lucky Bee<br>";
+
+    if(achievements.lateNightBee)
+        list += "🌙 Late Night Bee<br>";
+
+    if(achievements.sleepingBee)
+        list += "💤 Sleeping Bee<br>";
+
+    if(achievements.beeCollector)
+        list += "🐝 Bee Collector<br>";
+
+    if(achievements.trueHoneyKing)
+        list += "👑 True Honey King<br>";
+
+
+
+
+
+    if(list == ""){
+
+        list = "No achievements unlocked yet";
+
+    }
+
+
+
+    document.getElementById("achievementList").innerHTML = list;
+
+
+}
+    // ===============================
+// PART 3C - PERMANENT ACHIEVEMENT SAVING
+// ===============================
+
+
+
+// SAVE GAME WITH ACHIEVEMENTS
+
+function saveGame(){
+
+
+    localStorage.setItem(
+
+        "HoneyClickSave",
+
+        JSON.stringify({
+
+            honey,
+
+            clickPower,
+
+            honeyPerSecond,
+
+
+            multiplier,
+
+            secondMultiplier,
+
+
+
+            poohLevel,
+
+            poohHoney,
+
+            poohTotalHoney,
+
+
+
+            rebirths,
+
+            rebirthMultiplier,
+
+
+
+            upgrades,
+
+
+
+            totalClicks,
+
+            upgradesBought,
+
+
+
+            // achievements never reset
+
+            achievements,
+
+
+
+            lastPlayed: Date.now()
+
+
+        })
+
+    );
+
+
+}
+
+
+
+
+
+
+
+
+// LOAD GAME WITH PERMANENT ACHIEVEMENTS
+
+function loadGame(){
+
+
+    let save = localStorage.getItem("HoneyClickSave");
+
+
+
+    if(save){
+
+
+        let data = JSON.parse(save);
+
+
+
+        honey = data.honey || 0;
+
+
+        clickPower = data.clickPower || 1;
+
+
+        honeyPerSecond = data.honeyPerSecond || 0;
+
+
+
+        multiplier = data.multiplier || 1;
+
+
+        secondMultiplier = data.secondMultiplier || 1;
+
+
+
+
+
+
+        poohLevel = data.poohLevel || 0;
+
+
+        poohHoney = data.poohHoney || 1;
+
+
+        poohTotalHoney = data.poohTotalHoney || 0;
+
+
+
+
+
+
+        rebirths = data.rebirths || 0;
+
+
+        rebirthMultiplier = data.rebirthMultiplier || 1;
+
+
+
+
+
+
+        totalClicks = data.totalClicks || 0;
+
+
+        upgradesBought = data.upgradesBought || 0;
+
+
+
+
+
+
+
+        if(data.upgrades){
+
+            upgrades = data.upgrades;
+
+        }
+
+
+
+
+
+
+
+        // Keep old achievements and add new ones
+
+        if(data.achievements){
+
+
+            for(let badge in achievements){
+
+
+                if(data.achievements[badge]){
+
+
+                    achievements[badge] = true;
+
+
+                }
+
+
+            }
+
+
+        }
+
+
+
+
+
+
+
+        lastPlayed = data.lastPlayed || Date.now();
+
+
+
+
+
+
+
+        if(poohLevel > 0){
+
+
+            startPooh();
+
+
+        }
+
+
+
+    }
+
+
+
+    update();
+
+
+}
+
+
+
+
+
+
+
+
+// CREATE BACKUP WITH ACHIEVEMENTS
+
+function createBackup(){
+
+
+    let save = {
+
+
+        honey,
+
+
+        clickPower,
+
+
+        honeyPerSecond,
+
+
+        multiplier,
+
+
+        secondMultiplier,
+
+
+
+        poohLevel,
+
+
+        poohHoney,
+
+
+        poohTotalHoney,
+
+
+
+        rebirths,
+
+
+        rebirthMultiplier,
+
+
+
+        upgrades,
+
+
+
+        totalClicks,
+
+
+        upgradesBought,
+
+
+
+        achievements
+
+
+
+    };
+
+
+
+
+
+    backupCode = "HNY-" + btoa(JSON.stringify(save));
+
+
+
+    document.getElementById("code").innerHTML = backupCode;
+
+
+
+}
+
+
+
+
+
+
+
+
+// LOAD BACKUP WITH ACHIEVEMENTS
+
+function loadBackup(){
+
+
+    let code = document.getElementById("restoreInput").value;
+
+
+
+    try{
+
+
+        let data = JSON.parse(
+
+            atob(code.replace("HNY-",""))
+
+        );
+
+
+
+
+        honey = data.honey || 0;
+
+
+        clickPower = data.clickPower || 1;
+
+
+        honeyPerSecond = data.honeyPerSecond || 0;
+
+
+
+        multiplier = data.multiplier || 1;
+
+
+        secondMultiplier = data.secondMultiplier || 1;
+
+
+
+
+
+
+
+        poohLevel = data.poohLevel || 0;
+
+
+        poohHoney = data.poohHoney || 1;
+
+
+        poohTotalHoney = data.poohTotalHoney || 0;
+
+
+
+
+
+
+        rebirths = data.rebirths || 0;
+
+
+        rebirthMultiplier = data.rebirthMultiplier || 1;
+
+
+
+
+
+
+        totalClicks = data.totalClicks || 0;
+
+
+        upgradesBought = data.upgradesBought || 0;
+
+
+
+
+
+
+
+        if(data.upgrades){
+
+            upgrades = data.upgrades;
+
+        }
+
+
+
+
+
+
+
+
+        if(data.achievements){
+
+
+            for(let badge in achievements){
+
+
+                if(data.achievements[badge]){
+
+
+                    achievements[badge] = true;
+
+
+                }
+
+
+            }
+
+
+        }
+
+
+
+
+
+
+
+        saveGame();
+
+
+        update();
+
+
+
+        alert("Backup loaded!");
+
+
+
+    }
+
+
+    catch{
+
+
+        alert("Invalid backup code!");
+
+    }
+
+
+}
