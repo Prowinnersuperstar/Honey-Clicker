@@ -114,7 +114,13 @@ h1 {
 #stats {
     font-size:20px;
 }
-
+#pooh {
+    position: fixed;
+    width: 100px;
+    display: none;
+    left: 0px;
+    top: 300px;
+}
 
 </style>
 
@@ -167,7 +173,8 @@ Load
 <button id="click" onclick="clickHoney()">
 🍯
 </button>
-
+    
+<img id="pooh" src="https://plain-apac-prod-public.komododecks.com/202607/25/Pe7GYhaO6FSQxKeVEa3X/image.png">
 
 
 
@@ -193,6 +200,12 @@ Cost: <span id="clickCost"></span>
 Cost: <span id="beeCost"></span>
 </button>
 
+
+    <button class="upgrade" onclick="buy('pooh')">
+🐻 Winnie Helper<br>
++<span id="poohPower">1</span> honey every 0.5 sec<br>
+Cost: <span id="poohCost"></span>
+</button>
 
 
 <button class="upgrade" onclick="buy('hive')">
@@ -319,6 +332,10 @@ let honeyPerSecond = 0;
 let multiplier = 1;
 let secondMultiplier = 1;
 
+let poohLevel = 0;
+let poohHoney = 1;
+let poohActive = false;
+
 
 let upgrades = {
 
@@ -330,6 +347,8 @@ hive:{cost:200},
 
 machine:{cost:1000},
 
+pooh:{cost:500},    
+    
 royal:{cost:10000},
 
 gold:{cost:500},
@@ -394,6 +413,16 @@ function buy(type){
         if(type=="bee")
             honeyPerSecond += 1;
 
+
+        if(type=="pooh"){
+
+    poohLevel++;
+
+    poohHoney = poohLevel;
+
+    startPooh();
+
+}
 
 
         if(type=="hive")
@@ -509,6 +538,10 @@ function saveGame(){
 
             upgrades
 
+            poohLevel,
+
+            poohHoney
+
         })
 
     );
@@ -543,6 +576,16 @@ function loadGame(){
         multiplier = data.multiplier || 1;
 
         secondMultiplier = data.secondMultiplier || 1;
+        poohLevel = data.poohLevel || 0;
+
+poohHoney = data.poohHoney || 1;
+
+
+if(poohLevel > 0){
+
+    startPooh();
+
+}
 
 
         if(data.upgrades){
@@ -748,7 +791,88 @@ function update(){
 }
 
 
+function startPooh(){
 
+    let pooh = document.getElementById("pooh");
+
+    pooh.style.display = "block";
+
+
+    if(!poohActive){
+
+        poohActive = true;
+
+        movePooh();
+
+    }
+
+}
+
+
+
+function movePooh(){
+
+    let pooh = document.getElementById("pooh");
+
+
+    let x = 0;
+    let y = 300;
+
+    let speedX = 3;
+    let speedY = 2;
+
+
+    function animate(){
+
+        x += speedX;
+        y += speedY;
+
+
+        if(x + pooh.width >= window.innerWidth || x <= 0){
+
+            speedX *= -1;
+
+        }
+
+
+        if(y + pooh.height >= window.innerHeight || y <= 0){
+
+            speedY *= -1;
+
+        }
+
+
+        pooh.style.left = x + "px";
+        pooh.style.top = y + "px";
+
+
+        requestAnimationFrame(animate);
+
+    }
+
+
+    animate();
+
+}
+
+
+
+
+
+
+setInterval(function(){
+
+    if(poohLevel > 0){
+
+        honey += poohHoney;
+
+        update();
+
+        saveGame();
+
+    }
+
+},500);
 loadGame();
 
 
