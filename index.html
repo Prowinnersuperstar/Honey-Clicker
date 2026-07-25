@@ -23,33 +23,46 @@ h1 {
 
 
 
-/* Honey counter */
+/* Honey */
 
 #honey {
+
     font-size: 40px;
+
     margin-top: 30px;
+
 }
 
 
 
-/* Main honey button */
+/* Click button */
 
 #click {
+
     font-size: 80px;
+
     background: none;
+
     border: none;
+
     cursor: pointer;
+
     margin-top: 60px;
+
 }
 
 
 #click:hover {
+
     transform: scale(1.1);
+
 }
 
 
 
-/* Upgrade shop */
+
+
+/* Shop */
 
 #shop {
 
@@ -113,7 +126,9 @@ h1 {
 
 
 
-/* Backup box */
+
+
+/* Backup */
 
 #backup {
 
@@ -173,6 +188,8 @@ h1 {
 
 
 
+
+
 /* Stats */
 
 #stats {
@@ -183,7 +200,9 @@ h1 {
 
 
 
-/* Winnie Helper */
+
+
+/* Pooh */
 
 #pooh {
 
@@ -200,19 +219,18 @@ h1 {
 }
 
 
+
 </style>
 
 </head>
 
 
 <body>
-    <!-- Title -->
-
-<h1>Honey Click</h1>
+    <h1>Honey Click</h1>
 
 
 
-<!-- Backup System -->
+
 
 <div id="backup">
 
@@ -252,27 +270,28 @@ Load
 
 
 
-<!-- Honey Counter -->
 
 <div id="honey">
+
 🍯 Honey: 0
+
 </div>
 
 
 
 
 
-<!-- Main Click Button -->
 
 <button id="click" onclick="clickHoney()">
+
 🍯
+
 </button>
 
 
 
 
 
-<!-- Winnie Helper Image -->
 
 <img id="pooh" src="https://plain-apac-prod-public.komododecks.com/202607/25/Pe7GYhaO6FSQxKeVEa3X/image.png">
 
@@ -281,11 +300,12 @@ Load
 
 
 
-<!-- Upgrade Shop -->
 
 <div id="shop">
 
+
 <h2>Upgrades</h2>
+
 
 
 
@@ -298,6 +318,7 @@ Load
 Cost: <span id="clickCost"></span>
 
 </button>
+
 
 
 
@@ -486,7 +507,7 @@ Cost: <span id="kingdomCost"></span>
 
 <button class="upgrade" onclick="buy('factory')">
 
-🚀 Honey Factory<br>
+🏭 Honey Factory<br>
 
 +25000/sec<br>
 
@@ -504,7 +525,6 @@ Cost: <span id="factoryCost"></span>
 
 
 
-<!-- Stats -->
 
 <div id="stats">
 
@@ -538,7 +558,6 @@ let honeyPerSecond = 0;
 let multiplier = 1;
 
 let secondMultiplier = 1;
-
 
 
 let poohLevel = 0;
@@ -592,7 +611,6 @@ let backupCode = "";
 
 
 
-
 function clickHoney(){
 
     honey += clickPower * multiplier;
@@ -602,8 +620,6 @@ function clickHoney(){
     update();
 
 }
-
-
 
 
 
@@ -749,7 +765,6 @@ function buy(type){
 
 
 
-
         upgrades[type].cost *= 2;
 
 
@@ -770,7 +785,6 @@ function buy(type){
 
 
 
-
 setInterval(function(){
 
 
@@ -783,7 +797,10 @@ setInterval(function(){
 
 
 },1000);
-    
+
+
+
+
 
 
 // SAVE GAME
@@ -896,7 +913,7 @@ function loadGame(){
 
 
 
-// BACKUP CODE
+// BACKUP SYSTEM
 
 function createBackup(){
 
@@ -945,7 +962,7 @@ function copyCode(){
     navigator.clipboard.writeText(backupCode);
 
 
-    alert("Backup code copied!");
+    alert("Backup copied!");
 
 }
 
@@ -985,33 +1002,9 @@ function loadBackup(){
 
 
 
-        if(data.upgrades){
-
-            for(let i in upgrades){
-
-                if(data.upgrades[i]){
-
-                    upgrades[i] = data.upgrades[i];
-
-                }
-
-            }
-
-        }
-
-
-
         poohLevel = data.poohLevel || 0;
 
         poohHoney = data.poohHoney || 1;
-
-
-
-        if(poohLevel > 0){
-
-            startPooh();
-
-        }
 
 
 
@@ -1020,8 +1013,7 @@ function loadBackup(){
         update();
 
 
-
-        alert("Progress restored!");
+        alert("Progress loaded!");
 
     }
 
@@ -1029,13 +1021,12 @@ function loadBackup(){
     catch{
 
 
-        alert("Invalid code!");
+        alert("Invalid backup code!");
 
     }
 
 
 }
-
 
 
 
@@ -1141,7 +1132,6 @@ function movePooh(){
 
 
 
-
 // POOH MAKES HONEY
 
 setInterval(function(){
@@ -1154,7 +1144,6 @@ setInterval(function(){
 
 
         update();
-
 
         saveGame();
 
@@ -1218,6 +1207,7 @@ function update(){
 
 
 }
+
 
 
 
