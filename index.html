@@ -1160,11 +1160,19 @@ function loadGame(){
 
 
 
-        if(data.upgrades){
+       if(data.upgrades){
 
-            upgrades = data.upgrades;
+    for(let item in data.upgrades){
+
+        if(upgrades[item]){
+
+            upgrades[item].cost = data.upgrades[item].cost;
 
         }
+
+    }
+
+}
 
 
 
