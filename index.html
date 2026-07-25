@@ -4,6 +4,7 @@
 <title>Honey Click</title>
 
 <style>
+
 body {
     text-align: center;
     font-family: Arial, sans-serif;
@@ -15,10 +16,16 @@ h1 {
     color: #d68b00;
 }
 
+
+/* Honey */
+
 #honey {
     font-size: 40px;
     margin-top: 30px;
 }
+
+
+/* Click button */
 
 #click {
     font-size: 80px;
@@ -30,41 +37,6 @@ h1 {
 
 #click:hover {
     transform: scale(1.1);
-}
-
-
-/* Upgrade shop */
-
-#shop {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 170px;
-    max-height: 450px;
-    overflow-y: auto;
-    background: #ffe066;
-    padding: 8px;
-    border-radius: 12px;
-}
-
-#shop h2 {
-    font-size: 18px;
-    margin: 5px;
-}
-
-.upgrade {
-    width: 100%;
-    margin: 3px;
-    padding: 6px;
-    font-size: 11px;
-    cursor: pointer;
-    border-radius: 6px;
-    border: none;
-    background: #ff9f1c;
-}
-
-.upgrade:hover {
-    background: #ffb84d;
 }
 
 
@@ -102,6 +74,43 @@ h1 {
 }
 
 
+/* Upgrade shop */
+
+#shop {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 180px;
+    max-height: 500px;
+    overflow-y: auto;
+    background: #ffe066;
+    padding: 8px;
+    border-radius: 12px;
+}
+
+#shop h2 {
+    font-size: 18px;
+}
+
+
+.upgrade {
+    width: 100%;
+    margin: 3px;
+    padding: 6px;
+    font-size: 11px;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    background: #ff9f1c;
+}
+
+.upgrade:hover {
+    background: #ffb84d;
+}
+
+
+/* Stats */
+
 #stats {
     font-size: 20px;
 }
@@ -117,7 +126,7 @@ h1 {
 <h1>Honey Click</h1>
 
 
-<!-- Backup System -->
+<!-- Backup -->
 
 <div id="backup">
 
@@ -159,7 +168,7 @@ Load
 
 
 
-<!-- Upgrade Shop -->
+<!-- Shop -->
 
 <div id="shop">
 
@@ -169,56 +178,127 @@ Load
 <button class="upgrade" onclick="buy('click')">
 🍯 Honey Clicker<br>
 +1 Click<br>
-Cost: <span id="clickCost">10</span>
+Cost: <span id="clickCost"></span>
 </button>
+
 
 
 <button class="upgrade" onclick="buy('bee')">
 🐝 Bee Helper<br>
 +1/sec<br>
-Cost: <span id="beeCost">50</span>
+Cost: <span id="beeCost"></span>
 </button>
+
 
 
 <button class="upgrade" onclick="buy('hive')">
 🏠 Bigger Hive<br>
 x2 Click<br>
-Cost: <span id="hiveCost">200</span>
+Cost: <span id="hiveCost"></span>
 </button>
+
 
 
 <button class="upgrade" onclick="buy('gold')">
 ✨ Golden Bee<br>
 +5/sec<br>
-Cost: <span id="goldCost">500</span>
+Cost: <span id="goldCost"></span>
 </button>
+
 
 
 <button class="upgrade" onclick="buy('queen')">
 👑 Queen Bee<br>
 +25/sec<br>
-Cost: <span id="queenCost">2000</span>
+Cost: <span id="queenCost"></span>
 </button>
+
 
 
 <button class="upgrade" onclick="buy('garden')">
 🌸 Flower Garden<br>
 x2/sec<br>
-Cost: <span id="gardenCost">5000</span>
+Cost: <span id="gardenCost"></span>
 </button>
+
 
 
 <button class="upgrade" onclick="buy('extractor')">
 🧪 Honey Extractor<br>
 +100/sec<br>
-Cost: <span id="extractorCost">10000</span>
+Cost: <span id="extractorCost"></span>
 </button>
+
 
 
 <button class="upgrade" onclick="buy('royal')">
 💎 Royal Hive<br>
 x5 Click<br>
-Cost: <span id="royalCost">50000</span>
+Cost: <span id="royalCost"></span>
+</button>
+
+
+
+<button class="upgrade" onclick="buy('honeyBoost')">
+🍯 Honey Boost<br>
+x1.5 Click<br>
+Cost: <span id="honeyBoostCost"></span>
+</button>
+
+
+
+<button class="upgrade" onclick="buy('superBoost')">
+🌟 Super Boost<br>
+x2.5 Click<br>
+Cost: <span id="superBoostCost"></span>
+</button>
+
+
+
+<button class="upgrade" onclick="buy('farm')">
+🐝 Bee Farm<br>
++250/sec<br>
+Cost: <span id="farmCost"></span>
+</button>
+
+
+
+<button class="upgrade" onclick="buy('mega')">
+🏭 Mega Extractor<br>
++1000/sec<br>
+Cost: <span id="megaCost"></span>
+</button>
+
+
+
+<button class="upgrade" onclick="buy('forest')">
+🌳 Golden Forest<br>
+x3/sec<br>
+Cost: <span id="forestCost"></span>
+</button>
+
+
+
+<button class="upgrade" onclick="buy('kingdom')">
+👑 Bee Kingdom<br>
++5000/sec<br>
+Cost: <span id="kingdomCost"></span>
+</button>
+
+
+
+<button class="upgrade" onclick="buy('nectar')">
+🌟 Royal Nectar<br>
+x10 Click<br>
+Cost: <span id="nectarCost"></span>
+</button>
+
+
+
+<button class="upgrade" onclick="buy('factory')">
+🚀 Honey Factory<br>
++25000/sec<br>
+Cost: <span id="factoryCost"></span>
 </button>
 
 
@@ -237,592 +317,322 @@ Honey per second: 0
 </p>
 
 </div>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Honey Click</title>
 
+<style>
 
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background: #fff3a6;
+    margin: 0;
+}
 
-
-<script>
-
-
-let honey = 0;
-let clickPower = 1;
-let honeyPerSecond = 0;
-let multiplier = 1;
-let secondMultiplier = 1;
-
-
-let upgrades = {
-
-click:{cost:10},
-bee:{cost:50},
-hive:{cost:200},
-gold:{cost:500},
-queen:{cost:2000},
-garden:{cost:5000},
-extractor:{cost:10000},
-royal:{cost:50000}
-
-};
-
-
-let backupCode = "";
-
-
-
-function clickHoney(){
-
-honey += clickPower * multiplier;
-
-saveGame();
-update();
-
+h1 {
+    color: #d68b00;
 }
 
 
+/* Honey */
 
-
-function buy(type){
-
-let cost = upgrades[type].cost;
-
-
-if(honey >= cost){
-
-honey -= cost;
-
-
-if(type=="click")
-clickPower++;
-
-if(type=="bee")
-honeyPerSecond++;
-
-if(type=="hive")
-multiplier *= 2;
-
-if(type=="gold")
-honeyPerSecond += 5;
-
-if(type=="queen")
-honeyPerSecond += 25;
-
-if(type=="garden")
-secondMultiplier *= 2;
-
-if(type=="extractor")
-honeyPerSecond += 100;
-
-if(type=="royal")
-multiplier *= 5;
-
-
-upgrades[type].cost *= 2;
-
-
-saveGame();
-update();
-
-}
-
+#honey {
+    font-size: 40px;
+    margin-top: 30px;
 }
 
 
+/* Click button */
 
+#click {
+    font-size: 80px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-top: 80px;
+}
 
-setInterval(function(){
-
-honey += honeyPerSecond * secondMultiplier;
-
-saveGame();
-
-update();
-
-},1000);
-
-
-
-
-
-function saveGame(){
-
-localStorage.setItem(
-"HoneyClickSave",
-
-JSON.stringify({
-
-honey,
-clickPower,
-honeyPerSecond,
-multiplier,
-secondMultiplier,
-upgrades
-
-})
-
-);
-
+#click:hover {
+    transform: scale(1.1);
 }
 
 
+/* Backup */
 
-
-function loadGame(){
-
-let save = localStorage.getItem("HoneyClickSave");
-
-
-if(save){
-
-let data = JSON.parse(save);
-
-honey = data.honey;
-clickPower = data.clickPower;
-honeyPerSecond = data.honeyPerSecond;
-multiplier = data.multiplier;
-secondMultiplier = data.secondMultiplier;
-upgrades = data.upgrades;
-
+#backup {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 170px;
+    background: #fff0a8;
+    padding: 8px;
+    border-radius: 10px;
+    font-size: 12px;
 }
 
-update();
-
+#backup button {
+    font-size: 11px;
+    margin: 3px;
 }
 
+#backup input {
+    width: 150px;
+    font-size: 11px;
+}
 
-
-
-
-function createBackup(){
-
-let save = {
-
-honey,
-clickPower,
-honeyPerSecond,
-multiplier,
-secondMultiplier,
-upgrades
-
-};
-
-
-backupCode = "HNY-" + btoa(JSON.stringify(save));
-
-
-document.getElementById("code").innerHTML = backupCode;
-
+#code {
+    word-break: break-all;
+    font-size: 10px;
+    max-height: 80px;
+    overflow-y: auto;
+    background: white;
+    padding: 5px;
+    border-radius: 5px;
 }
 
 
+/* Upgrade shop */
 
+#shop {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 180px;
+    max-height: 500px;
+    overflow-y: auto;
+    background: #ffe066;
+    padding: 8px;
+    border-radius: 12px;
+}
 
-function copyCode(){
-
-navigator.clipboard.writeText(backupCode);
-
-alert("Backup code copied!");
-
+#shop h2 {
+    font-size: 18px;
 }
 
 
-
-
-
-function loadBackup(){
-
-let code = document.getElementById("restoreInput").value;
-
-
-try {
-
-let data = JSON.parse(
-atob(code.replace("HNY-",""))
-);
-
-
-honey = data.honey;
-clickPower = data.clickPower;
-honeyPerSecond = data.honeyPerSecond;
-multiplier = data.multiplier;
-secondMultiplier = data.secondMultiplier;
-upgrades = data.upgrades;
-
-
-saveGame();
-update();
-
-
-alert("Progress restored!");
-
+.upgrade {
+    width: 100%;
+    margin: 3px;
+    padding: 6px;
+    font-size: 11px;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    background: #ff9f1c;
 }
 
-catch {
-
-alert("Invalid backup code!");
-
-}
-
+.upgrade:hover {
+    background: #ffb84d;
 }
 
 
+/* Stats */
 
-
-
-function update(){
-
-
-document.getElementById("honey").innerHTML =
-"🍯 Honey: " + Math.floor(honey);
-
-
-document.getElementById("power").innerHTML =
-"Honey per click: " + (clickPower * multiplier);
-
-
-document.getElementById("auto").innerHTML =
-"Honey per second: " + (honeyPerSecond * secondMultiplier);
-
-
-
-for(let i in upgrades){
-
-document.getElementById(i+"Cost").innerHTML =
-upgrades[i].cost;
-
+#stats {
+    font-size: 20px;
 }
 
+</style>
 
-}
+</head>
 
 
+<body>
 
-loadGame();
 
+<h1>Honey Click</h1>
 
-</script>
 
+<!-- Backup -->
 
-</body>
-</html>
-<script>
+<div id="backup">
 
-let honey = 0;
-let clickPower = 1;
-let honeyPerSecond = 0;
-let multiplier = 1;
-let secondMultiplier = 1;
+<h3>💾 Backup</h3>
 
-let upgrades = {
+<button onclick="createBackup()">
+Create Code
+</button>
 
-click:{cost:10},
-bee:{cost:50},
-hive:{cost:200},
-gold:{cost:500},
-queen:{cost:2000},
-garden:{cost:5000},
-extractor:{cost:10000},
-royal:{cost:50000},
+<p id="code">
+No code created
+</p>
 
-farm:{cost:250000},
-mega:{cost:1000000},
-forest:{cost:5000000},
-kingdom:{cost:25000000},
-nectar:{cost:100000000},
-factory:{cost:1000000000}
+<button onclick="copyCode()">
+Copy Code
+</button>
 
-};
+<br>
 
+<input id="restoreInput" placeholder="Enter backup code">
 
-let backupCode = "";
+<button onclick="loadBackup()">
+Load
+</button>
 
+</div>
 
 
-function clickHoney(){
 
-    honey += clickPower * multiplier;
+<div id="honey">
+🍯 Honey: 0
+</div>
 
-    saveGame();
-    update();
 
-}
+<button id="click" onclick="clickHoney()">
+🍯
+</button>
 
 
 
 
-function buy(type){
+<!-- Shop -->
 
-    let cost = upgrades[type].cost;
+<div id="shop">
 
+<h2>Upgrades</h2>
 
-    if(honey >= cost){
 
-        honey -= cost;
+<button class="upgrade" onclick="buy('click')">
+🍯 Honey Clicker<br>
++1 Click<br>
+Cost: <span id="clickCost"></span>
+</button>
 
 
-        if(type=="click")
-            clickPower += 1;
 
+<button class="upgrade" onclick="buy('bee')">
+🐝 Bee Helper<br>
++1/sec<br>
+Cost: <span id="beeCost"></span>
+</button>
 
-        if(type=="bee")
-            honeyPerSecond += 1;
 
 
-        if(type=="hive")
-            multiplier *= 2;
+<button class="upgrade" onclick="buy('hive')">
+🏠 Bigger Hive<br>
+x2 Click<br>
+Cost: <span id="hiveCost"></span>
+</button>
 
 
-        if(type=="gold")
-            honeyPerSecond += 5;
 
+<button class="upgrade" onclick="buy('gold')">
+✨ Golden Bee<br>
++5/sec<br>
+Cost: <span id="goldCost"></span>
+</button>
 
-        if(type=="queen")
-            honeyPerSecond += 25;
 
 
-        if(type=="garden")
-            secondMultiplier *= 2;
+<button class="upgrade" onclick="buy('queen')">
+👑 Queen Bee<br>
++25/sec<br>
+Cost: <span id="queenCost"></span>
+</button>
 
 
-        if(type=="extractor")
-            honeyPerSecond += 100;
 
+<button class="upgrade" onclick="buy('garden')">
+🌸 Flower Garden<br>
+x2/sec<br>
+Cost: <span id="gardenCost"></span>
+</button>
 
-        if(type=="royal")
-            multiplier *= 5;
 
 
-        if(type=="farm")
-            honeyPerSecond += 250;
+<button class="upgrade" onclick="buy('extractor')">
+🧪 Honey Extractor<br>
++100/sec<br>
+Cost: <span id="extractorCost"></span>
+</button>
 
 
-        if(type=="mega")
-            honeyPerSecond += 1000;
 
+<button class="upgrade" onclick="buy('royal')">
+💎 Royal Hive<br>
+x5 Click<br>
+Cost: <span id="royalCost"></span>
+</button>
 
-        if(type=="forest")
-            secondMultiplier *= 3;
 
 
-        if(type=="kingdom")
-            honeyPerSecond += 5000;
+<button class="upgrade" onclick="buy('honeyBoost')">
+🍯 Honey Boost<br>
+x1.5 Click<br>
+Cost: <span id="honeyBoostCost"></span>
+</button>
 
 
-        if(type=="nectar")
-            multiplier *= 10;
 
+<button class="upgrade" onclick="buy('superBoost')">
+🌟 Super Boost<br>
+x2.5 Click<br>
+Cost: <span id="superBoostCost"></span>
+</button>
 
-        if(type=="factory")
-            honeyPerSecond += 25000;
 
 
+<button class="upgrade" onclick="buy('farm')">
+🐝 Bee Farm<br>
++250/sec<br>
+Cost: <span id="farmCost"></span>
+</button>
 
-        upgrades[type].cost *= 2;
 
 
-        saveGame();
-        update();
+<button class="upgrade" onclick="buy('mega')">
+🏭 Mega Extractor<br>
++1000/sec<br>
+Cost: <span id="megaCost"></span>
+</button>
 
-    }
 
-}
 
+<button class="upgrade" onclick="buy('forest')">
+🌳 Golden Forest<br>
+x3/sec<br>
+Cost: <span id="forestCost"></span>
+</button>
 
 
 
-setInterval(function(){
+<button class="upgrade" onclick="buy('kingdom')">
+👑 Bee Kingdom<br>
++5000/sec<br>
+Cost: <span id="kingdomCost"></span>
+</button>
 
-    honey += honeyPerSecond * secondMultiplier;
 
-    saveGame();
-    update();
 
-},1000);
+<button class="upgrade" onclick="buy('nectar')">
+🌟 Royal Nectar<br>
+x10 Click<br>
+Cost: <span id="nectarCost"></span>
+</button>
 
 
 
+<button class="upgrade" onclick="buy('factory')">
+🚀 Honey Factory<br>
++25000/sec<br>
+Cost: <span id="factoryCost"></span>
+</button>
 
 
-// DEVICE SAVE
+</div>
 
-function saveGame(){
 
-    localStorage.setItem(
-    "HoneyClickSave",
 
-    JSON.stringify({
+<div id="stats">
 
-        honey,
-        clickPower,
-        honeyPerSecond,
-        multiplier,
-        secondMultiplier,
-        upgrades
+<p id="power">
+Honey per click: 1
+</p>
 
-    })
+<p id="auto">
+Honey per second: 0
+</p>
 
-    );
-
-}
-
-
-
-
-
-function loadGame(){
-
-    let save = localStorage.getItem("HoneyClickSave");
-
-
-    if(save){
-
-        let data = JSON.parse(save);
-
-
-        honey = data.honey;
-        clickPower = data.clickPower;
-        honeyPerSecond = data.honeyPerSecond;
-        multiplier = data.multiplier;
-        secondMultiplier = data.secondMultiplier;
-        upgrades = data.upgrades;
-
-
-    }
-
-
-    update();
-
-}
-
-
-
-
-
-
-// BACKUP CODE SYSTEM
-
-
-function createBackup(){
-
-
-    let save = {
-
-        honey,
-        clickPower,
-        honeyPerSecond,
-        multiplier,
-        secondMultiplier,
-        upgrades
-
-    };
-
-
-    backupCode = "HNY-" + btoa(JSON.stringify(save));
-
-
-    document.getElementById("code").innerHTML = backupCode;
-
-
-}
-
-
-
-
-
-function copyCode(){
-
-    navigator.clipboard.writeText(backupCode);
-
-    alert("Backup code copied!");
-
-}
-
-
-
-
-
-function loadBackup(){
-
-
-    let code = document.getElementById("restoreInput").value;
-
-
-    try {
-
-
-        let data = JSON.parse(
-            atob(code.replace("HNY-",""))
-        );
-
-
-        honey = data.honey;
-        clickPower = data.clickPower;
-        honeyPerSecond = data.honeyPerSecond;
-        multiplier = data.multiplier;
-        secondMultiplier = data.secondMultiplier;
-        upgrades = data.upgrades;
-
-
-        saveGame();
-        update();
-
-
-        alert("Progress restored!");
-
-    }
-
-
-    catch {
-
-        alert("Invalid backup code!");
-
-    }
-
-}
-
-
-
-
-
-
-
-function update(){
-
-
-    document.getElementById("honey").innerHTML =
-    "🍯 Honey: " + Math.floor(honey);
-
-
-
-    document.getElementById("power").innerHTML =
-    "Honey per click: " + (clickPower * multiplier);
-
-
-
-    document.getElementById("auto").innerHTML =
-    "Honey per second: " + 
-    Math.floor(honeyPerSecond * secondMultiplier);
-
-
-
-    for(let i in upgrades){
-
-        let element = document.getElementById(i+"Cost");
-
-        if(element){
-
-            element.innerHTML = upgrades[i].cost;
-
-        }
-
-    }
-
-
-}
-
-
-
-
-loadGame();
-
-
-</script>
+</div>
