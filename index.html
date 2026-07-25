@@ -397,17 +397,13 @@ function buy(type){
 
 
         if(type=="hive")
-            multiplier *= 1.5;
+    honeyPerSecond += 10;
 
+if(type=="machine")
+    honeyPerSecond += 100;
 
-
-        if(type=="machine")
-            multiplier *= 2.5;
-
-
-
-        if(type=="royal")
-            multiplier *= 5;
+if(type=="royal")
+    honeyPerSecond += 1000;
 
 
 
