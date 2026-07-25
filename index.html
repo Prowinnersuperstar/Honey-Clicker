@@ -504,3 +504,325 @@ loadGame();
 
 </body>
 </html>
+<script>
+
+let honey = 0;
+let clickPower = 1;
+let honeyPerSecond = 0;
+let multiplier = 1;
+let secondMultiplier = 1;
+
+let upgrades = {
+
+click:{cost:10},
+bee:{cost:50},
+hive:{cost:200},
+gold:{cost:500},
+queen:{cost:2000},
+garden:{cost:5000},
+extractor:{cost:10000},
+royal:{cost:50000},
+
+farm:{cost:250000},
+mega:{cost:1000000},
+forest:{cost:5000000},
+kingdom:{cost:25000000},
+nectar:{cost:100000000},
+factory:{cost:1000000000}
+
+};
+
+
+let backupCode = "";
+
+
+
+function clickHoney(){
+
+    honey += clickPower * multiplier;
+
+    saveGame();
+    update();
+
+}
+
+
+
+
+function buy(type){
+
+    let cost = upgrades[type].cost;
+
+
+    if(honey >= cost){
+
+        honey -= cost;
+
+
+        if(type=="click")
+            clickPower += 1;
+
+
+        if(type=="bee")
+            honeyPerSecond += 1;
+
+
+        if(type=="hive")
+            multiplier *= 2;
+
+
+        if(type=="gold")
+            honeyPerSecond += 5;
+
+
+        if(type=="queen")
+            honeyPerSecond += 25;
+
+
+        if(type=="garden")
+            secondMultiplier *= 2;
+
+
+        if(type=="extractor")
+            honeyPerSecond += 100;
+
+
+        if(type=="royal")
+            multiplier *= 5;
+
+
+        if(type=="farm")
+            honeyPerSecond += 250;
+
+
+        if(type=="mega")
+            honeyPerSecond += 1000;
+
+
+        if(type=="forest")
+            secondMultiplier *= 3;
+
+
+        if(type=="kingdom")
+            honeyPerSecond += 5000;
+
+
+        if(type=="nectar")
+            multiplier *= 10;
+
+
+        if(type=="factory")
+            honeyPerSecond += 25000;
+
+
+
+        upgrades[type].cost *= 2;
+
+
+        saveGame();
+        update();
+
+    }
+
+}
+
+
+
+
+setInterval(function(){
+
+    honey += honeyPerSecond * secondMultiplier;
+
+    saveGame();
+    update();
+
+},1000);
+
+
+
+
+
+// DEVICE SAVE
+
+function saveGame(){
+
+    localStorage.setItem(
+    "HoneyClickSave",
+
+    JSON.stringify({
+
+        honey,
+        clickPower,
+        honeyPerSecond,
+        multiplier,
+        secondMultiplier,
+        upgrades
+
+    })
+
+    );
+
+}
+
+
+
+
+
+function loadGame(){
+
+    let save = localStorage.getItem("HoneyClickSave");
+
+
+    if(save){
+
+        let data = JSON.parse(save);
+
+
+        honey = data.honey;
+        clickPower = data.clickPower;
+        honeyPerSecond = data.honeyPerSecond;
+        multiplier = data.multiplier;
+        secondMultiplier = data.secondMultiplier;
+        upgrades = data.upgrades;
+
+
+    }
+
+
+    update();
+
+}
+
+
+
+
+
+
+// BACKUP CODE SYSTEM
+
+
+function createBackup(){
+
+
+    let save = {
+
+        honey,
+        clickPower,
+        honeyPerSecond,
+        multiplier,
+        secondMultiplier,
+        upgrades
+
+    };
+
+
+    backupCode = "HNY-" + btoa(JSON.stringify(save));
+
+
+    document.getElementById("code").innerHTML = backupCode;
+
+
+}
+
+
+
+
+
+function copyCode(){
+
+    navigator.clipboard.writeText(backupCode);
+
+    alert("Backup code copied!");
+
+}
+
+
+
+
+
+function loadBackup(){
+
+
+    let code = document.getElementById("restoreInput").value;
+
+
+    try {
+
+
+        let data = JSON.parse(
+            atob(code.replace("HNY-",""))
+        );
+
+
+        honey = data.honey;
+        clickPower = data.clickPower;
+        honeyPerSecond = data.honeyPerSecond;
+        multiplier = data.multiplier;
+        secondMultiplier = data.secondMultiplier;
+        upgrades = data.upgrades;
+
+
+        saveGame();
+        update();
+
+
+        alert("Progress restored!");
+
+    }
+
+
+    catch {
+
+        alert("Invalid backup code!");
+
+    }
+
+}
+
+
+
+
+
+
+
+function update(){
+
+
+    document.getElementById("honey").innerHTML =
+    "🍯 Honey: " + Math.floor(honey);
+
+
+
+    document.getElementById("power").innerHTML =
+    "Honey per click: " + (clickPower * multiplier);
+
+
+
+    document.getElementById("auto").innerHTML =
+    "Honey per second: " + 
+    Math.floor(honeyPerSecond * secondMultiplier);
+
+
+
+    for(let i in upgrades){
+
+        let element = document.getElementById(i+"Cost");
+
+        if(element){
+
+            element.innerHTML = upgrades[i].cost;
+
+        }
+
+    }
+
+
+}
+
+
+
+
+loadGame();
+
+
+</script>
