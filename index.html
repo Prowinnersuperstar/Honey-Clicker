@@ -23,7 +23,7 @@ h1 {
 
 
 
-/* Honey */
+/* Honey counter */
 
 #honey {
 
@@ -35,7 +35,7 @@ h1 {
 
 
 
-/* Click button */
+/* Main click button */
 
 #click {
 
@@ -62,7 +62,7 @@ h1 {
 
 
 
-/* Shop */
+/* Upgrade shop */
 
 #shop {
 
@@ -202,7 +202,7 @@ h1 {
 
 
 
-/* Pooh */
+/* Pooh helper */
 
 #pooh {
 
@@ -282,6 +282,7 @@ Load
 
 
 
+
 <button id="click" onclick="clickHoney()">
 
 🍯
@@ -305,6 +306,7 @@ Load
 
 
 <h2>Upgrades</h2>
+
 
 
 
@@ -517,6 +519,22 @@ Cost: <span id="factoryCost"></span>
 
 
 
+
+
+<br><br>
+
+<button class="upgrade" onclick="rebirth()">
+
+🔄 Rebirth<br>
+
+Requires: 1,000,000 Honey<br>
+
++0.2x Click Bonus
+
+</button>
+
+
+
 </div>
 
 
@@ -544,6 +562,13 @@ Honey per second: 0
 </p>
 
 
+<p id="rebirthStat">
+
+Rebirths: 0 | Bonus: x1
+
+</p>
+
+
 
 </div>
 <script>
@@ -560,11 +585,22 @@ let multiplier = 1;
 let secondMultiplier = 1;
 
 
+
 let poohLevel = 0;
 
 let poohHoney = 1;
 
 let poohActive = false;
+
+
+
+// Rebirth system
+
+let rebirths = 0;
+
+let rebirthMultiplier = 1;
+
+
 
 
 
@@ -611,15 +647,20 @@ let backupCode = "";
 
 
 
+
 function clickHoney(){
 
-    honey += clickPower * multiplier;
+
+    honey += clickPower * multiplier * rebirthMultiplier;
+
 
     saveGame();
 
     update();
 
+
 }
+
 
 
 
@@ -797,13 +838,7 @@ setInterval(function(){
 
 
 },1000);
-
-
-
-
-
-
-// SAVE GAME
+    // SAVE GAME
 
 function saveGame(){
 
@@ -827,7 +862,11 @@ function saveGame(){
 
             poohLevel,
 
-            poohHoney
+            poohHoney,
+
+            rebirths,
+
+            rebirthMultiplier
 
         })
 
@@ -891,6 +930,12 @@ function loadGame(){
 
 
 
+        rebirths = data.rebirths || 0;
+
+        rebirthMultiplier = data.rebirthMultiplier || 1;
+
+
+
         if(poohLevel > 0){
 
             startPooh();
@@ -912,8 +957,102 @@ function loadGame(){
 
 
 
+// REBIRTH
 
-// BACKUP SYSTEM
+function rebirth(){
+
+
+    if(honey >= 1000000){
+
+
+        rebirths++;
+
+
+        rebirthMultiplier += 0.2;
+
+
+
+        honey = 0;
+
+        clickPower = 1;
+
+        honeyPerSecond = 0;
+
+        multiplier = 1;
+
+        secondMultiplier = 1;
+
+
+
+        poohLevel = 0;
+
+        poohHoney = 1;
+
+
+
+        upgrades = {
+
+            click:{cost:10},
+
+            bee:{cost:50},
+
+            pooh:{cost:500},
+
+            hive:{cost:200},
+
+            machine:{cost:1000},
+
+            royal:{cost:10000},
+
+            gold:{cost:500},
+
+            queen:{cost:2000},
+
+            garden:{cost:5000},
+
+            extractor:{cost:10000},
+
+            farm:{cost:250000},
+
+            mega:{cost:1000000},
+
+            forest:{cost:5000000},
+
+            kingdom:{cost:25000000},
+
+            factory:{cost:1000000000}
+
+        };
+
+
+
+        saveGame();
+
+        update();
+
+
+        alert("Rebirth complete! +" + (rebirths * 0.2) + "x click bonus");
+
+
+    }
+
+    else{
+
+
+        alert("You need 1,000,000 Honey!");
+
+    }
+
+
+}
+
+
+
+
+
+
+
+// BACKUP CODE
 
 function createBackup(){
 
@@ -935,7 +1074,11 @@ function createBackup(){
 
         poohLevel,
 
-        poohHoney
+        poohHoney,
+
+        rebirths,
+
+        rebirthMultiplier
 
 
     };
@@ -1008,6 +1151,12 @@ function loadBackup(){
 
 
 
+        rebirths = data.rebirths || 0;
+
+        rebirthMultiplier = data.rebirthMultiplier || 1;
+
+
+
         saveGame();
 
         update();
@@ -1059,7 +1208,6 @@ function startPooh(){
 
 
 }
-
 
 
 
@@ -1160,7 +1308,7 @@ setInterval(function(){
 
 
 
-// UPDATE SCREEN
+// UPDATE
 
 function update(){
 
@@ -1175,7 +1323,7 @@ function update(){
 
     "Honey per click: " +
 
-    Math.floor(clickPower * multiplier);
+    Math.floor(clickPower * multiplier * rebirthMultiplier);
 
 
 
@@ -1184,6 +1332,16 @@ function update(){
     "Honey per second: " +
 
     Math.floor(honeyPerSecond * secondMultiplier);
+
+
+
+    document.getElementById("rebirthStat").innerHTML =
+
+    "Rebirths: " + rebirths +
+
+    " | Bonus: x" +
+
+    rebirthMultiplier;
 
 
 
@@ -1207,7 +1365,6 @@ function update(){
 
 
 }
-
 
 
 
